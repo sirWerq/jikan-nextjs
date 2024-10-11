@@ -6,12 +6,12 @@ export default function Navbar() {
           <h1 className="font-semibold text-2xl">AmiaList</h1>
           <ul className="flex gap-1">
             <li>
-              <a href="#" className="p-2 hover:bg-red-300 rounded-md">
+              <a href="/" className="p-2 hover:bg-red-300 rounded-md">
                 Anime
               </a>
             </li>
             <li>
-              <a href="#" className="p-2 hover:bg-red-300 rounded-md">
+              <a href="/manga" className="p-2 hover:bg-red-300 rounded-md">
                 Manga
               </a>
             </li>
