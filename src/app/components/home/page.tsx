@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import seasonNowAnime from "@/app/api/seasonNowAnime/route";
 import animeTop from "@/app/api/topAnime/route";
+import Skeleton from "../skeleton/paage";
 
 export default function HomePage() {
   const [animeSeasonNow, setSeasonNow] = useState([]);
@@ -30,15 +31,18 @@ export default function HomePage() {
   return (
     <div className="w-full h-full flex justify-center">
       <div className="container">
-        <div className="top">
+        <div className="top px-4 lg:px-0 xl:px-0">
           <h1 className="font-semibold text-3xl py-4">Top Anime</h1>
           {isLoading ? (
-            <p>Loading...</p>
+            <Skeleton />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
               {topAnime.map((anime: any) => (
-                <div key={anime.mal_id} className="cursor-pointer group">
-                  <div className="w-[90%] h-96 m-auto overflow-hidden">
+                <div
+                  key={anime.mal_id}
+                  className="cursor-pointer group w-[70%] lg:w-[90%] m-auto"
+                >
+                  <div className="w-full h-96 overflow-hidden">
                     <img
                       src={anime.images.webp.image_url}
                       alt={anime.title}
@@ -51,15 +55,18 @@ export default function HomePage() {
             </div>
           )}
         </div>
-        <div className="seasonal">
+        <div className="top px-4 lg:px-0 xl:px-0">
           <h1 className="font-semibold text-3xl py-4">Seasonal Anime</h1>
           {isLoading ? (
-            <p>Loading...</p>
+            <Skeleton />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
               {animeSeasonNow.map((anime: any) => (
-                <div key={anime.mal_id} className="cursor-pointer group">
-                  <div className="w-[90%] h-96 m-auto overflow-hidden">
+                <div
+                  key={anime.mal_id}
+                  className="cursor-pointer group w-[70%] lg:w-[90%] m-auto"
+                >
+                  <div className="w-full h-96 overflow-hidden">
                     <img
                       src={anime.images.webp.image_url}
                       alt={anime.title}
