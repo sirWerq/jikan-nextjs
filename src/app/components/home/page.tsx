@@ -4,7 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import seasonNowAnime from "@/app/api/seasonNowAnime/route";
 import animeTop from "@/app/api/topAnime/route";
-import Skeleton from "../skeleton/paage";
+import Skeleton from "../skeleton/page";
 
 export default function HomePage() {
   const [animeSeasonNow, setSeasonNow] = useState([]);
