@@ -2,10 +2,8 @@ import axios from "axios";
 
 const topManga = async () => {
   try {
-    const fetchData = await axios.get(
-      `https://api.jikan.moe/v4/top/manga?limit=10`
-    );
-    console.log("run fetch top anime");
+    const fetchData = await axios.get(`https://api.jikan.moe/v4/top/manga`);
+    console.log("run fetch manga");
 
     return fetchData.data;
   } catch (err) {

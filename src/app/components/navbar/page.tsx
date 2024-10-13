@@ -5,40 +5,27 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [toggleHamburger, setToggleHamburger] = useState(false);
+
+  const pathname = usePathname();
 
   const handleToggle = () => {
     setToggleHamburger((toggleHamburger) => !toggleHamburger);
   };
 
   return (
-    <div className="w-full flex items-center justify-center bg-transparent p-3">
-      <div className="container flex justify-between items-center">
-        <h1 className="font-semibold text-2xl">AmiaList</h1>
-        <div>
-          <div
-            onClick={handleToggle}
-            className={`${
-              toggleHamburger ? "hamburger-toggle" : ""
-            } cursor-pointer lg:hidden relative`}
-          >
-            <span className="hamburger-icon origin-top-left transition ease-in-out duration-300"></span>
-            <span className="hamburger-icon transition ease-in-out duration-300"></span>
-            <span className="hamburger-icon origin-bottom-left transition ease-in-out duration-300"></span>
-          </div>
-          <div
-            className={`${
-              toggleHamburger ? "flex" : "hidden"
-            } absolute top-100 right-0 w-full h-screen lg:h-full flex-col lg:flex-row bg-white rounded-xl shadow-xl lg:relative lg:flex lg:w-auto lg:shadow-none lg:rounded-none lg:gap-8 lg:items-center z-50`}
-          >
-            <ul className="flex flex-col lg:flex-row gap-1 order-2 lg:order-1 text-lg lg:text-base">
+    <>
+      <div className="w-full flex items-center justify-center bg-tertiary p-3">
+        <div className="container flex justify-between items-center">
+          <h1 className="font-semibold text-2xl">AmiaList</h1>
+          <div className="w-full h-full ml-4 justify-between gap-8 items-center z-50 hidden lg:flex">
+            <ul className="flex gap-1">
               <li>
                 <Link
                   href="/"
                   className={`link ${
                     pathname === "/" ? "activeLink" : ""
-                  } p-2 hover:bg-slate-200 rounded-md`}
+                  } p-2 hover:bg-quaternary rounded-md`}
                 >
                   Anime
                 </Link>
@@ -48,7 +35,7 @@ export default function Navbar() {
                   href="/manga"
                   className={`link ${
                     pathname === "/manga" ? "activeLink" : ""
-                  } p-2 hover:bg-slate-200 rounded-md`}
+                  } p-2 hover:bg-quaternary rounded-md`}
                 >
                   Manga
                 </Link>
@@ -58,7 +45,7 @@ export default function Navbar() {
                   href="#"
                   className={`link ${
                     pathname === "/#" ? "activeLink" : ""
-                  } p-2 hover:bg-slate-200 rounded-md`}
+                  } p-2 hover:bg-quaternary rounded-md`}
                 >
                   Top Anime
                 </Link>
@@ -68,23 +55,12 @@ export default function Navbar() {
                   href="#"
                   className={`link ${
                     pathname === "/#" ? "activeLink" : ""
-                  } p-2 hover:bg-slate-200 rounded-md`}
-                >
-                  Top Manga
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className={`link ${
-                    pathname === "/#" ? "activeLink" : ""
-                  } p-2 hover:bg-slate-200 rounded-md`}
+                  } p-2 hover:bg-quaternary rounded-md`}
                 >
                   Seasons
                 </Link>
               </li>
             </ul>
-
             <div className="w-full lg:w-auto mt-3 lg:mt-0 flex flex-col lg:flex-row lg:items-center lg:gap-4 order-1 lg:order-2">
               <div className="relative mx-auto text-gray-600 h-full flex items-center order-2 lg:order-1">
                 <input
@@ -119,6 +95,52 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </div>
+      <div className="fixed bottom-3 right-3 lg:hidden z-50">
+        <div
+          onClick={handleToggle}
+          className="p-4 bg-tertiary rounded-full flex flex-col justify-center items-center relative"
+        >
+          <p
+            className={`transition-all duration-300 transform ${
+              toggleHamburger ? "rotate-45 opacity-100" : "rotate-0 opacity-100"
+            } cursor-pointer`}
+          >
+            ➕
+          </p>
+        </div>
+        <div
+          className={`${
+            toggleHamburger
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          } w-64 h-40 p-2 absolute -top-32 right-14 bg-quaternary flex flex-wrap gap-6 items-center justify-center rounded-md transition-all duration-300 ease-in-out transform`}
+        >
+          <div className="text-center">
+            <p>🎬</p>
+            <p>anime</p>
+          </div>
+          <div className="text-center">
+            <p>📖</p>
+            <p>manga</p>
+          </div>
+          <div className="text-center">
+            <p>🏆</p>
+            <p>top anime</p>
+          </div>
+          <div className="text-center">
+            <p>▶️</p>
+            <p>seasons</p>
+          </div>
+          <div className="text-center">
+            <p>🔎</p>
+            <p>search</p>
+          </div>
+          <div className="text-center">
+            <p>👤</p>
+            <p>account</p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

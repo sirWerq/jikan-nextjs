@@ -1,8 +1,11 @@
 export default function FooterPage() {
   return (
-    <footer className="w-full h-[80px] flex justify-center border-t-2">
-      <div className="container flex items-center justify-center">
-        <p>© 2024</p>
+    <footer className="w-full flex justify-center bg-tertiary">
+      <div className="container flex items-center justify-center gap-14 p-6">
+        <div className="text-center">
+          <p>© 2024</p>
+          <p>Powered by Next.js</p>
+        </div>
       </div>
     </footer>
   );

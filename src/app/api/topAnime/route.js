@@ -3,7 +3,7 @@ import axios from "axios";
 const topAnime = async () => {
   try {
     const fetchData = await axios.get(
-      `https://api.jikan.moe/v4/top/anime?limit=10`
+      `https://api.jikan.moe/v4/top/anime?limit=12`
     );
     console.log("run fetch top anime");
 

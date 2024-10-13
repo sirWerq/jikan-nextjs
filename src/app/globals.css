@@ -3,22 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-  .hamburger-icon {
-    @apply w-7 h-[2px] bg-black block mt-2;
+  p,
+  a,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-white;
   }
 }
 
 @layer utilities {
   .activeLink {
-    @apply text-sky-600;
-  }
-  .hamburger-toggle > .hamburger-icon:nth-child(1) {
-    @apply rotate-45;
-  }
-  .hamburger-toggle > .hamburger-icon:nth-child(2) {
-    @apply scale-0;
-  }
-  .hamburger-toggle > .hamburger-icon:nth-child(3) {
-    @apply -rotate-45;
+    @apply text-primary;
   }
 }

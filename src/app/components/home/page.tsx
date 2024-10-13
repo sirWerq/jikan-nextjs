@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
 import { useEffect, useState } from "react";
 import seasonNowAnime from "@/app/api/seasonNowAnime/route";
 import animeTop from "@/app/api/topAnime/route";
+import Link from "next/link";
 import Skeleton from "../skeleton/page";
 
 export default function HomePage() {
@@ -31,18 +31,21 @@ export default function HomePage() {
   return (
     <div className="w-full h-full flex justify-center">
       <div className="container">
-        <div className="top px-4 lg:px-0 xl:px-0">
-          <h1 className="font-semibold text-3xl py-4">Top Anime</h1>
+        <div className="p-4">
+          <div className="flex justify-between items-center py-4">
+            <h1 className="font-semibold text-3xl">Seasonal Anime</h1>
+            <Link href="#">view all</Link>
+          </div>
           {isLoading ? (
             <Skeleton />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-              {topAnime.map((anime: any) => (
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-12">
+              {animeSeasonNow.map((anime: any) => (
                 <div
                   key={anime.mal_id}
-                  className="cursor-pointer group w-[70%] lg:w-[90%] m-auto"
+                  className="cursor-pointer group hover:bg-quaternary"
                 >
-                  <div className="w-full h-96 overflow-hidden">
+                  <div className="w-full h-44 lg:h-72 overflow-hidden">
                     <img
                       src={anime.images.webp.image_url}
                       alt={anime.title}
@@ -55,28 +58,35 @@ export default function HomePage() {
             </div>
           )}
         </div>
-        <div className="top px-4 lg:px-0 xl:px-0">
-          <h1 className="font-semibold text-3xl py-4">Seasonal Anime</h1>
+        <div className="p4">
+          <div className="flex justify-between items-center p-4">
+            <h1 className="font-semibold text-3xl">Top Anime</h1>
+            <Link href="#">view all</Link>
+          </div>
           {isLoading ? (
             <Skeleton />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-              {animeSeasonNow.map((anime: any) => (
-                <div
-                  key={anime.mal_id}
-                  className="cursor-pointer group w-[70%] lg:w-[90%] m-auto"
-                >
-                  <div className="w-full h-96 overflow-hidden">
-                    <img
-                      src={anime.images.webp.image_url}
-                      alt={anime.title}
-                      className="h-full object-cover w-full m-auto transition-transform duration-300 transform group-hover:scale-110"
-                    />
-                  </div>
-                  <p className="text-sm p-2">{anime.title}</p>
+            topAnime.map((anime: any) => (
+              <div
+                key={anime.mal_id}
+                className="flex m-3 bg-secondary p-4 rounded-lg gap-4 hover:bg-quaternary"
+              >
+                <div className="w-16 flex justify-center items-center">
+                  <p className="text-black">{anime.rank}</p>
                 </div>
-              ))}
-            </div>
+                <img
+                  src={anime.images.jpg.large_image_url}
+                  alt={anime.title}
+                  className="w-16 h-20 object-cover rounded-md"
+                />
+                <div className="grid grid-cols-4 items-center w-full">
+                  <p className="text-black">{anime.title}</p>
+                  <p className="text-black">⭐: {anime.score}</p>
+                  <p className="text-black">📺: {anime.episodes}</p>
+                  <p className="text-black">♟️: {anime.scored_by}</p>
+                </div>
+              </div>
+            ))
           )}
         </div>
       </div>
