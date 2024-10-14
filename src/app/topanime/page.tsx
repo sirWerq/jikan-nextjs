@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Skeleton from "../components/skeleton/page";
-import mangaTop from "../api/TopManga/route";
+import animeTop from "../api/topAnime/route";
 
-export default function MangaPage() {
-  const [topManga, setTopManga] = useState([]);
+export default function TopAnimePage() {
+  const [topAnime, setTopAnime] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -13,9 +13,9 @@ export default function MangaPage() {
   async function fetchManga() {
     try {
       setIsLoading(true);
-      const data = await mangaTop(currentPage);
+      const data = await animeTop(currentPage);
       setTotalPages(data.pagination.last_visible_page);
-      setTopManga(data.data);
+      setTopAnime(data.data);
     } catch (error) {
       console.error("Error fetching anime data:", error);
     } finally {
@@ -42,12 +42,13 @@ export default function MangaPage() {
       setCurrentPage(1);
     }
   };
+
   return (
     <div className="w-full h-full flex justify-center">
       <div className="container p-4">
         <div className="p-4">
           <div className="flex justify-between items-center">
-            <h1 className="font-semibold text-3xl">Manga</h1>
+            <h1 className="font-semibold text-3xl">Anime</h1>
             <p>
               {currentPage} of {totalPages}
             </p>
@@ -57,7 +58,7 @@ export default function MangaPage() {
           <Skeleton />
         ) : (
           <div className="grid grid-cols-3 md:grid-cols-4 gap-4 lg:grid-cols-none lg:gap-0">
-            {topManga.map((anime: any) => (
+            {topAnime.map((anime: any) => (
               <div
                 key={anime.mal_id}
                 className="relative lg:flex lg:m-3 lg:bg-secondary lg:p-4 rounded-lg lg:gap-4 hover:bg-quaternary cursor-pointer"
@@ -80,7 +81,7 @@ export default function MangaPage() {
                     ⭐: {anime.score}
                   </p>
                   <p className="text-black hidden lg:block text-center">
-                    📺: {anime.chapters}
+                    📺: {anime.episodes}
                   </p>
                   <p className="text-black hidden lg:block text-center">
                     ♟️: {anime.scored_by}

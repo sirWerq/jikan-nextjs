@@ -42,9 +42,9 @@ export default function Navbar() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/topanime"
                   className={`link ${
-                    pathname === "/#" ? "activeLink" : ""
+                    pathname === "/topanime" ? "activeLink" : ""
                   } p-2 hover:bg-quaternary rounded-md`}
                 >
                   Top Anime
@@ -115,30 +115,30 @@ export default function Navbar() {
               : "opacity-0 translate-y-10"
           } w-64 h-40 p-2 absolute -top-32 right-14 bg-quaternary flex flex-wrap gap-6 items-center justify-center rounded-md transition-all duration-300 ease-in-out transform`}
         >
-          <div className="text-center">
+          <Link href="/" className="text-center">
             <p>🎬</p>
             <p>anime</p>
-          </div>
-          <div className="text-center">
+          </Link>
+          <Link href="/manga" className="text-center">
             <p>📖</p>
             <p>manga</p>
-          </div>
-          <div className="text-center">
+          </Link>
+          <Link href="/topanime" className="text-center">
             <p>🏆</p>
             <p>top anime</p>
-          </div>
-          <div className="text-center">
+          </Link>
+          <Link href="/#" className="text-center">
             <p>▶️</p>
             <p>seasons</p>
-          </div>
-          <div className="text-center">
+          </Link>
+          <Link href="/#" className="text-center">
             <p>🔎</p>
             <p>search</p>
-          </div>
-          <div className="text-center">
+          </Link>
+          <Link href="/#" className="text-center">
             <p>👤</p>
             <p>account</p>
-          </div>
+          </Link>
         </div>
       </div>
     </>
