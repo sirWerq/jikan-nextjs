@@ -7,8 +7,8 @@ import Link from "next/link";
 import Skeleton from "./components/skeleton/page";
 
 export default function Home() {
-  const [animeSeasonNow, setSeasonNow] = useState([]);
-  const [topAnime, setTopAnime] = useState([]);
+  const [animeSeasonNow, setSeasonNow] = useState<SeasonAnime[]>([]);
+  const [topAnime, setTopAnime] = useState<TopAnime[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchAnime = async () => {
@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full h-full flex justify-center">
+    <div className="w-full h-full flex justify-center pt-[64px]">
       <div className="container">
         <div className="p-4">
           <div className="flex justify-between items-center py-4">
@@ -40,10 +40,11 @@ export default function Home() {
             <Skeleton />
           ) : (
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12">
-              {animeSeasonNow.map((anime: any) => (
-                <div
+              {animeSeasonNow.map((anime: SeasonAnime) => (
+                <Link
+                  href={`/details/${anime.mal_id}`}
                   key={anime.mal_id}
-                  className="cursor-pointer group hover:bg-quaternary"
+                  className="cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden"
                 >
                   <div className="w-full h-44 lg:h-80 overflow-hidden">
                     <img
@@ -52,8 +53,10 @@ export default function Home() {
                       className="h-full object-cover w-full transition-transform duration-300 transform group-hover:scale-110"
                     />
                   </div>
-                  <p className="text-sm p-2 text-center">{anime.title}</p>
-                </div>
+                  <p className="text-sm p-2 text-center drop-shadow-2xl">
+                    {anime.title}
+                  </p>
+                </Link>
               ))}
             </div>
           )}
@@ -67,12 +70,12 @@ export default function Home() {
             <Skeleton />
           ) : (
             <div className="grid grid-cols-3 md:grid-cols-4 gap-4 lg:grid-cols-none lg:gap-0">
-              {topAnime.map((anime: any) => (
+              {topAnime.map((anime: TopAnime) => (
                 <div
                   key={anime.mal_id}
-                  className="relative lg:flex lg:m-3 lg:bg-secondary lg:p-4 rounded-lg lg:gap-4 hover:bg-quaternary cursor-pointer"
+                  className="relative lg:flex lg:m-3 lg:bg-secondary lg:p-4 rounded-lg lg:gap-4 hover:bg-quaternary cursor-pointer lg:shadow-md"
                 >
-                  <div className="absolute z-10 bg-tertiary lg:bg-transparent m-auto rounded-full w-8 h-8 lg:w-16 flex justify-center items-center lg:static">
+                  <div className="absolute z-10 bg-tertiary lg:bg-transparent m-auto rounded-full w-16 h-8 lg:h-full flex justify-center items-center lg:static">
                     <p className="lg:text-black">#{anime.rank}</p>
                   </div>
                   <div className="w-full h-44 lg:w-16 lg:h-20 overflow-hidden">
@@ -93,7 +96,7 @@ export default function Home() {
                       📺: {anime.episodes}
                     </p>
                     <p className="text-black hidden lg:block text-center">
-                      ♟️: {anime.scored_by}
+                      👥: {anime.scored_by}
                     </p>
                   </div>
                 </div>

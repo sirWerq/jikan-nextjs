@@ -15,9 +15,11 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-full flex items-center justify-center bg-tertiary p-3">
+      <div className="w-full flex items-center justify-center bg-tertiary/70 p-3 fixed z-50 text-white">
         <div className="container flex justify-between items-center">
-          <h1 className="font-semibold text-2xl">AmiaList</h1>
+          <Link href="/" className="font-semibold text-2xl">
+            AmiaList
+          </Link>
           <div className="w-full h-full ml-4 justify-between gap-8 items-center z-50 hidden lg:flex">
             <ul className="flex gap-1">
               <li>
@@ -111,8 +113,8 @@ export default function Navbar() {
         <div
           className={`${
             toggleHamburger
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 translate-y-10 pointer-events-none"
           } w-64 h-40 p-2 absolute -top-32 right-14 bg-quaternary flex flex-wrap gap-6 items-center justify-center rounded-md transition-all duration-300 ease-in-out transform`}
         >
           <Link href="/" className="text-center">

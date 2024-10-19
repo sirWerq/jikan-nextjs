@@ -5,7 +5,7 @@ import Skeleton from "../components/skeleton/page";
 import animeTop from "../api/topAnime/route";
 
 export default function TopAnimePage() {
-  const [topAnime, setTopAnime] = useState([]);
+  const [topAnime, setTopAnime] = useState<TopAnime[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -44,7 +44,7 @@ export default function TopAnimePage() {
   };
 
   return (
-    <div className="w-full h-full flex justify-center">
+    <div className="w-full h-full flex justify-center pt-[64px]">
       <div className="container p-4">
         <div className="p-4">
           <div className="flex justify-between items-center">
@@ -58,12 +58,12 @@ export default function TopAnimePage() {
           <Skeleton />
         ) : (
           <div className="grid grid-cols-3 md:grid-cols-4 gap-4 lg:grid-cols-none lg:gap-0">
-            {topAnime.map((anime: any) => (
+            {topAnime.map((anime: TopAnime) => (
               <div
                 key={anime.mal_id}
                 className="relative lg:flex lg:m-3 lg:bg-secondary lg:p-4 rounded-lg lg:gap-4 hover:bg-quaternary cursor-pointer"
               >
-                <div className="absolute z-10 bg-tertiary lg:bg-transparent m-auto rounded-full w-8 h-8 lg:w-16 flex justify-center items-center lg:static">
+                <div className="absolute z-10 bg-tertiary lg:bg-transparent m-auto rounded-full w-16 h-8 lg:h-full flex justify-center items-center lg:static">
                   <p className="lg:text-black">#{anime.rank}</p>
                 </div>
                 <div className="w-full h-44 lg:w-16 lg:h-20 overflow-hidden">
@@ -84,7 +84,7 @@ export default function TopAnimePage() {
                     📺: {anime.episodes}
                   </p>
                   <p className="text-black hidden lg:block text-center">
-                    ♟️: {anime.scored_by}
+                    👥: {anime.scored_by}
                   </p>
                 </div>
               </div>

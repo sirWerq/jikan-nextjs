@@ -2,20 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  p,
-  a,
-  span,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-white;
-  }
-}
-
 @layer utilities {
   .activeLink {
     @apply text-primary;
