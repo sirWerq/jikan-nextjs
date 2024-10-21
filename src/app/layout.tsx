@@ -5,27 +5,27 @@ import Navbar from "./components/navbar/page";
 import Footer from "./components/footer/page";
 
 const overpass = Overpass({
-  subsets: ["latin"],
-  display: "swap",
+    subsets: ["latin"],
+    display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "AmiaList",
-  description: "Mark your anime list with AmiaList",
+    title: "AmiaList",
+    description: "Mark your anime list with AmiaList",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${overpass.className} bg-primary`}>
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={`${overpass.className} bg-primary`}>
+                <Navbar />
+                {children}
+                <Footer />
+            </body>
+        </html>
+    );
 }

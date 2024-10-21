@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const topAnime = async (page) => {
+const animeTop = async (page) => {
   try {
     const fetchData = await axios.get(
       `https://api.jikan.moe/v4/top/anime?page=${page}`
@@ -13,4 +13,4 @@ const topAnime = async (page) => {
   }
 };
 
-export default topAnime;
+export default animeTop;

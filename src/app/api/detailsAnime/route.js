@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function detailsAnime(id) {
+const detailsAnime = async (id) => {
   try {
     const fetchData = await axios.get(
       `https://api.jikan.moe/v4/anime/${id}/full`
@@ -11,4 +11,6 @@ export default async function detailsAnime(id) {
   } catch (err) {
     throw new Error("fail get api data: ", err);
   }
-}
+};
+
+export default detailsAnime;

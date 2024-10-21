@@ -1,16 +1,15 @@
 import axios from "axios";
 
-const mangaTop = async (page) => {
+const animeCharacters = async (id) => {
   try {
     const fetchData = await axios.get(
-      `https://api.jikan.moe/v4/top/manga?page=${page}`
+      `https://api.jikan.moe/v4/anime/${id}/characters`
     );
-    console.log("run fetch manga");
-
+    console.log("run fetch characters anime");
     return fetchData.data;
   } catch (err) {
     throw new Error("fail get api data: ", err);
   }
 };
 
-export default mangaTop;
+export default animeCharacters;
