@@ -42,15 +42,15 @@ export default function DetailsPage() {
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-                <div className="container">
+                <div className="container px-1 lg:px-0">
                     <div className="w-full border-b-2">
                         <h1 className="font-semibold text-3xl">
                             {datas.title}
                         </h1>
                         <span className="text-sm">{datas.title_english}</span>
                     </div>
-                    <div className="w-full grid grid-cols-6 pt-4 border-b-2">
-                        <div className="col-span-1 flex flex-col items-center">
+                    <div className="w-full grid lg:grid-cols-4 pt-4 border-b-2 xl:grid-cols-5">
+                        <div className="lg:col-span-1 flex flex-col items-center lg:items-start lg:px-2">
                             <img src={datas.images.jpg.image_url} alt="" />
                             <div className="flex gap-4 py-4">
                                 <button className="bg-secondary w-28 h-8 rounded-md shadow-md flex items-center justify-center">
@@ -61,35 +61,35 @@ export default function DetailsPage() {
                                 </button>
                             </div>
                         </div>
-                        <div className="col-span-5">
-                            <div className="grid grid-rows-2 w-full h-full">
-                                <div>
+                        <div className="lg:col-span-3 xl:col-span-4">
+                            <div className="lg:grid lg:grid-rows-3 w-full h-full">
+                                <div className="lg:row-span-2">
                                     <h2 className="font-semibold text-xl mb-2">
                                         Synopsis
                                     </h2>
                                     <p>{datas.synopsis}</p>
                                 </div>
-                                <div className="flex gap-4 pt-5">
-                                    <div className="bg-secondary w-48 h-8 flex justify-center items-center rounded-lg shadow-md">
+                                <div className="flex gap-4 pt-5 flex-wrap justify-center lg:justify-start lg:items-center lg:rows-span-1">
+                                    <div className="bg-secondary w-44 h-8 flex justify-center items-center rounded-lg shadow-md">
                                         <p>Rating ⭐️ : {datas.score}</p>
                                     </div>
-                                    <div className="bg-secondary w-48 h-8 flex justify-center items-center rounded-lg shadow-md">
+                                    <div className="bg-secondary w-44 h-8 flex justify-center items-center rounded-lg shadow-md">
                                         <p>Ranking 🏆 : {datas.rank}</p>
                                     </div>
-                                    <div className="bg-secondary w-48 h-8 flex justify-center items-center rounded-lg shadow-md">
+                                    <div className="bg-secondary w-44 h-8 flex justify-center items-center rounded-lg shadow-md">
                                         <p>
                                             Popularity 🔥 : {datas.popularity}
                                         </p>
                                     </div>
-                                    <div className="bg-secondary w-48 h-8 flex justify-center items-center rounded-lg shadow-md">
+                                    <div className="bg-secondary w-44 h-8 flex justify-center items-center rounded-lg shadow-md">
                                         <p>Members 👥 : {datas.members}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="w-full grid grid-cols-6 px-4 py-2 gap-8">
-                        <div className="col-span-1 text-sm p-2 flex flex-col gap-2 bg-secondary rounded-lg shadow-md h-[1200px]">
+                    <div className="w-full grid lg:grid-cols-6 px-4 py-2 gap-8">
+                        <div className="lg:col-span-1 text-sm p-2 flex flex-col gap-2 bg-secondary rounded-lg shadow-md h-full lg:h-[1200px]">
                             <div>
                                 <p>Airing</p>
                                 <p className="text-slate-500">{datas.status}</p>
@@ -211,7 +211,7 @@ export default function DetailsPage() {
                                 </p>
                             </div>
                         </div>
-                        <div className="col-span-5">
+                        <div className="lg:col-span-5">
                             <Tabs
                                 datas={datas}
                                 characters={characters}

@@ -70,7 +70,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 </div>
                 <div className="p-2 bg-secondary rounded-sm shadow-md">
                     <h2>Characters</h2>
-                    <div className="grid grid-cols-3 gap-5">
+                    <div className="grid lg:grid-cols-3 gap-5">
                         {characters.slice(0, 9).map((char: any) => {
                             const japaneseVoiceActor = char.voice_actors.find(
                                 (actor: any) => actor.language === "Japanese"
@@ -133,7 +133,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 </div>
                 <div className="p-2 bg-secondary rounded-sm shadow-md">
                     <h2>Staff</h2>
-                    <div className="grid grid-cols-3 gap-5">
+                    <div className="grid lg:grid-cols-3 gap-5">
                         {staffs.slice(0, 9).map((staff: any) => (
                             <div
                                 className="flex justify-between shadow-md p-2 gap-2"
@@ -165,7 +165,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 } p-2 bg-secondary rounded-sm shadow-md`}
             >
                 <h2>Characters</h2>
-                <div className="grid grid-cols-3 gap-5">
+                <div className="grid lg:grid-cols-3 gap-5">
                     {characters.map((char) => {
                         const japaneseVoiceActor = char.voice_actors.find(
                             (actor) => actor.language === "Japanese"
@@ -217,8 +217,8 @@ export default function Tabs({ datas, characters, staffs }: any) {
                     tabs == 3 ? "block" : "hidden"
                 } p-2 bg-secondary rounded-sm shadow-md`}
             >
-                <h2>Staff</h2>
-                <div className="grid grid-cols-3 gap-5">
+                <h2>Staffs</h2>
+                <div className="grid lg:grid-cols-3 gap-5">
                     {staffs.map((staff: any) => (
                         <div
                             className="flex justify-between shadow-md p-2 gap-2"
