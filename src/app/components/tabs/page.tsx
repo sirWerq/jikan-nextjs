@@ -41,7 +41,11 @@ export default function Tabs({ datas, characters, staffs }: any) {
                     tabs == 1 ? "block" : "hidden"
                 } flex flex-col gap-3`}
             >
-                <div className="p-2 bg-secondary rounded-sm shadow-md">
+                <div
+                    className={`${
+                        datas.relations.length > 0 ? "" : "hidden"
+                    } p-2 bg-secondary rounded-sm shadow-md`}
+                >
                     <h2>Relations</h2>
                     <div className="text-sm">
                         {datas.relations.map((relat: Relation, id: number) => (
@@ -50,20 +54,22 @@ export default function Tabs({ datas, characters, staffs }: any) {
                                 className="border-b border-primary flex gap-2"
                             >
                                 <p>{relat.relation}</p>
-                                {relat.entry.map((e) => (
-                                    <div key={e.mal_id}>
-                                        <Link
-                                            href={
-                                                relat.relation.toLowerCase() ===
-                                                "adaptation"
-                                                    ? `/detailsmanga/${e.mal_id}`
-                                                    : `/details/${e.mal_id}`
-                                            }
-                                        >
-                                            {e.name}
-                                        </Link>
-                                    </div>
-                                ))}
+                                <div className="flex flex-col">
+                                    {relat.entry.map((e) => (
+                                        <div key={e.mal_id}>
+                                            <Link
+                                                href={
+                                                    relat.relation.toLowerCase() ===
+                                                    "adaptation"
+                                                        ? `/detailsmanga/${e.mal_id}`
+                                                        : `/details/${e.mal_id}`
+                                                }
+                                            >
+                                                {e.name}
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         ))}
                     </div>
