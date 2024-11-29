@@ -15,7 +15,7 @@ export default function Navbar() {
         setToggleHamburger((toggleHamburger) => !toggleHamburger);
     };
 
-    const handleSearch = (e) => {
+    const handleSearch = (e: any) => {
         e.preventDefault();
         if (search.trim()) {
             router.push(`/search?q=${search}`);
@@ -104,12 +104,14 @@ export default function Navbar() {
                                     </svg>
                                 </button>
                             </form>
-                            <div>
-                                <img
+                            <div className='flex gap-4'>
+                                {/* <img
                                     src='/hero.jpg'
                                     alt='user'
                                     className='w-10 h-10 rounded-full'
-                                />
+                                /> */}
+                                <Link href='/register'>Register</Link>
+                                <Link href='/login'>Login</Link>
                             </div>
                         </div>
                     </div>
