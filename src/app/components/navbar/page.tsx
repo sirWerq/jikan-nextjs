@@ -104,7 +104,7 @@ export default function Navbar() {
                                     </svg>
                                 </button>
                             </form>
-                            <div className='flex gap-4'>
+                            <div className='hidden md:flex gap-4'>
                                 {/* <img
                                     src='/hero.jpg'
                                     alt='user'
@@ -155,9 +155,17 @@ export default function Navbar() {
                         <p>▶️</p>
                         <p>seasons</p>
                     </Link>
-                    <Link href='/#' className='text-center'>
+                    {/* <Link href='/#' className='text-center'>
                         <p>👤</p>
                         <p>account</p>
+                    </Link> */}
+                    <Link href='/#' className='text-center'>
+                        <p>👤</p>
+                        <p>Login</p>
+                    </Link>
+                    <Link href='/#' className='text-center'>
+                        <p>👤</p>
+                        <p>Register</p>
                     </Link>
                 </div>
             </div>

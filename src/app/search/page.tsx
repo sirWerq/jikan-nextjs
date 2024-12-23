@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import animeSearch from '../api/animeSearch/route';
-import mangaSearch from '../api/mangaSearch/route';
+import { animeSearch, mangaSearch } from '@/lib/jikanApi';
 import Link from 'next/link';
+import Loading from '../components/loading/page';
 
 export default function SearchPage() {
     const searchParams = useSearchParams();
@@ -73,105 +73,97 @@ export default function SearchPage() {
         }
     };
 
-    return (
-        <div className='w-full h-full flex justify-center pt-[64px]'>
-            <div className='container'>
-                <h1 className='font-semibold text-3xl border-b-secondary border-b-2 py-4'>
-                    Hasil Pencarian : {search}
-                </h1>
-                <div className='flex gap-4 border-b-secondary border-b-2'>
-                    <span
-                        onClick={() => setTabs(1)}
-                        className={`${
-                            tabs === 1 ? 'bg-tertiary text-white' : ''
-                        } w-24 flex justify-center items-center h-14 cursor-pointer`}
-                    >
-                        Anime
-                    </span>
-                    <span
-                        onClick={() => setTabs(2)}
-                        className={`${
-                            tabs === 2 ? 'bg-tertiary text-white' : ''
-                        } w-24 flex justify-center items-center h-14 cursor-pointer`}
-                    >
-                        Manga
-                    </span>
-                </div>
-                {tabs === 1 && (
-                    <>
-                        <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 my-2'>
-                            {isLoading ? (
-                                <p>loading</p>
-                            ) : (
-                                searchResultAnime.map((item: any) => (
-                                    <Link
-                                        href={`/details/${item.mal_id}`}
-                                        key={item.mal_id}
-                                        className='cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden'
-                                    >
-                                        <img
-                                            src={item.images.jpg.image_url}
-                                            alt={item.title}
-                                        />
-                                        <p>{item.title}</p>
-                                    </Link>
-                                ))
-                            )}
-                        </div>
-                        <div className='flex w-full gap-5 justify-center items-center my-4'>
-                            <button
-                                className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
-                                onClick={handlePreviousPageAnime}
-                            >
-                                Previous Page
-                            </button>
-                            <button
-                                className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
-                                onClick={handleNextPageAnime}
-                            >
-                                Next Page
-                            </button>
-                        </div>
-                    </>
-                )}
-                {tabs === 2 && (
-                    <>
-                        <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 my-2'>
-                            {isLoading ? (
-                                <p>loading</p>
-                            ) : (
-                                searchResultManga.map((item: any) => (
-                                    <Link
-                                        href={`/details/${item.mal_id}`}
-                                        key={item.mal_id}
-                                        className='cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden'
-                                    >
-                                        <img
-                                            src={item.images.jpg.image_url}
-                                            alt={item.title}
-                                        />
-                                        <p>{item.title}</p>
-                                    </Link>
-                                ))
-                            )}
-                        </div>
-                        <div className='flex w-full gap-5 justify-center items-center my-4'>
-                            <button
-                                className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
-                                onClick={handlePreviousPageManga}
-                            >
-                                Previous Page
-                            </button>
-                            <button
-                                className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
-                                onClick={handleNextPageManga}
-                            >
-                                Next Page
-                            </button>
-                        </div>
-                    </>
-                )}
+    return isLoading ? (
+        <Loading />
+    ) : (
+        <div className='container'>
+            <h1 className='font-semibold text-3xl border-b-secondary border-b-2 py-4'>
+                Hasil Pencarian : {search}
+            </h1>
+            <div className='flex gap-4 border-b-secondary border-b-2'>
+                <span
+                    onClick={() => setTabs(1)}
+                    className={`${
+                        tabs === 1 ? 'bg-tertiary text-white' : ''
+                    } w-24 flex justify-center items-center h-14 cursor-pointer`}
+                >
+                    Anime
+                </span>
+                <span
+                    onClick={() => setTabs(2)}
+                    className={`${
+                        tabs === 2 ? 'bg-tertiary text-white' : ''
+                    } w-24 flex justify-center items-center h-14 cursor-pointer`}
+                >
+                    Manga
+                </span>
             </div>
+            {tabs === 1 && (
+                <>
+                    <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 my-2'>
+                        {searchResultAnime.map((item: any) => (
+                            <Link
+                                href={`/details/${item.mal_id}`}
+                                key={item.mal_id}
+                                className='cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden'
+                            >
+                                <img
+                                    src={item.images.jpg.image_url}
+                                    alt={item.title}
+                                />
+                                <p>{item.title}</p>
+                            </Link>
+                        ))}
+                    </div>
+                    <div className='flex w-full gap-5 justify-center items-center my-4'>
+                        <button
+                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            onClick={handlePreviousPageAnime}
+                        >
+                            Previous Page
+                        </button>
+                        <button
+                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            onClick={handleNextPageAnime}
+                        >
+                            Next Page
+                        </button>
+                    </div>
+                </>
+            )}
+            {tabs === 2 && (
+                <>
+                    <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 my-2'>
+                        {searchResultManga.map((item: any) => (
+                            <Link
+                                href={`/details/${item.mal_id}`}
+                                key={item.mal_id}
+                                className='cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden'
+                            >
+                                <img
+                                    src={item.images.jpg.image_url}
+                                    alt={item.title}
+                                />
+                                <p>{item.title}</p>
+                            </Link>
+                        ))}
+                    </div>
+                    <div className='flex w-full gap-5 justify-center items-center my-4'>
+                        <button
+                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            onClick={handlePreviousPageManga}
+                        >
+                            Previous Page
+                        </button>
+                        <button
+                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            onClick={handleNextPageManga}
+                        >
+                            Next Page
+                        </button>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
