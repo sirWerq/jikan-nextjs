@@ -69,7 +69,7 @@ export default function LoginPage() {
                 <div>
                     <button
                         type='submit'
-                        className='bg-tertiary border p-3 rounded-md text-white'
+                        className='bg-primary border p-3 rounded-md text-white'
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? 'Login...' : 'Login'}

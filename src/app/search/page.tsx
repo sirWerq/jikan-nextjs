@@ -84,7 +84,7 @@ export default function SearchPage() {
                 <span
                     onClick={() => setTabs(1)}
                     className={`${
-                        tabs === 1 ? 'bg-tertiary text-white' : ''
+                        tabs === 1 ? 'bg-primary rounded-lg text-white' : ''
                     } w-24 flex justify-center items-center h-14 cursor-pointer`}
                 >
                     Anime
@@ -92,7 +92,7 @@ export default function SearchPage() {
                 <span
                     onClick={() => setTabs(2)}
                     className={`${
-                        tabs === 2 ? 'bg-tertiary text-white' : ''
+                        tabs === 2 ? 'bg-primary rounded-lg text-white' : ''
                     } w-24 flex justify-center items-center h-14 cursor-pointer`}
                 >
                     Manga
@@ -100,12 +100,12 @@ export default function SearchPage() {
             </div>
             {tabs === 1 && (
                 <>
-                    <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 my-2'>
+                    <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 m-2'>
                         {searchResultAnime.map((item: any) => (
                             <Link
                                 href={`/details/${item.mal_id}`}
                                 key={item.mal_id}
-                                className='cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden'
+                                className='cursor-pointer group hover:bg-primary rounded-lg overflow-hidden hover:text-white'
                             >
                                 <img
                                     src={item.images.jpg.image_url}
@@ -117,13 +117,13 @@ export default function SearchPage() {
                     </div>
                     <div className='flex w-full gap-5 justify-center items-center my-4'>
                         <button
-                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            className='w-[120px] h-[50px] bg-primary rounded-lg hover:bg-primary/80 text-white'
                             onClick={handlePreviousPageAnime}
                         >
                             Previous Page
                         </button>
                         <button
-                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            className='w-[120px] h-[50px] bg-primary rounded-lg hover:bg-primary/80 text-white'
                             onClick={handleNextPageAnime}
                         >
                             Next Page
@@ -133,12 +133,12 @@ export default function SearchPage() {
             )}
             {tabs === 2 && (
                 <>
-                    <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 my-2'>
+                    <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-12 m-2'>
                         {searchResultManga.map((item: any) => (
                             <Link
                                 href={`/details/${item.mal_id}`}
                                 key={item.mal_id}
-                                className='cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden'
+                                className='cursor-pointer group hover:bg-primary rounded-lg overflow-hidden hover:text-white'
                             >
                                 <img
                                     src={item.images.jpg.image_url}
@@ -150,13 +150,13 @@ export default function SearchPage() {
                     </div>
                     <div className='flex w-full gap-5 justify-center items-center my-4'>
                         <button
-                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            className='w-[120px] h-[50px] bg-primary rounded-lg hover:bg-primary/80 text-white'
                             onClick={handlePreviousPageManga}
                         >
                             Previous Page
                         </button>
                         <button
-                            className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                            className='w-[120px] h-[50px] bg-primary rounded-lg hover:bg-primary/80 text-white'
                             onClick={handleNextPageManga}
                         >
                             Next Page

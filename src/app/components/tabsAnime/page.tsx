@@ -9,11 +9,11 @@ export default function Tabs({ datas, characters, staffs }: any) {
     };
 
     return (
-        <div className='flex flex-col gap-3'>
-            <div className='flex gap-2 bg-secondary'>
+        <div className='flex flex-col gap-3 bg-white p-4'>
+            <div className='flex gap-2 border-b-2'>
                 <div
                     className={`${
-                        tabs === 1 ? 'bg-tertiary text-white' : ''
+                        tabs === 1 ? 'bg-tertiary text-primary' : ''
                     } w-24 flex justify-center items-center h-14 cursor-pointer`}
                     onClick={() => handleTabs(1)}
                 >
@@ -21,7 +21,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 </div>
                 <div
                     className={`${
-                        tabs === 2 ? 'bg-tertiary text-white' : ''
+                        tabs === 2 ? 'bg-tertiary text-primary' : ''
                     } w-24 flex justify-center items-center h-14 cursor-pointer`}
                     onClick={() => handleTabs(2)}
                 >
@@ -29,7 +29,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 </div>
                 <div
                     className={`${
-                        tabs === 3 ? 'bg-tertiary text-white' : ''
+                        tabs === 3 ? 'bg-tertiary text-primary' : ''
                     } w-24 flex justify-center items-center h-14 cursor-pointer`}
                     onClick={() => handleTabs(3)}
                 >

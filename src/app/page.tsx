@@ -42,7 +42,7 @@ export default function Home() {
                         <Link
                             href={`/details/${anime.mal_id}`}
                             key={anime.mal_id}
-                            className='cursor-pointer group hover:bg-quaternary rounded-lg overflow-hidden'
+                            className='cursor-pointer group hover:bg-primary hover:text-white rounded-lg overflow-hidden'
                         >
                             <div className='w-full h-44 lg:h-80 overflow-hidden'>
                                 <img
@@ -69,10 +69,10 @@ export default function Home() {
                         <Link
                             href={`/details/${anime.mal_id}`}
                             key={anime.mal_id}
-                            className='relative lg:flex lg:m-3 lg:bg-secondary lg:p-4 rounded-lg lg:gap-4 hover:bg-quaternary cursor-pointer lg:shadow-md'
+                            className='relative lg:flex lg:m-3 lg:bg-white lg:p-4 rounded-lg lg:gap-4 hover:bg-primary cursor-pointer lg:shadow-md group hover:text-white'
                         >
-                            <div className='absolute z-10 bg-tertiary lg:bg-transparent m-auto rounded-full w-16 h-8 lg:h-full flex justify-center items-center lg:static'>
-                                <p className='lg:text-black text-white'>
+                            <div className='absolute z-10 bg-primary lg:bg-transparent m-auto rounded-full w-16 h-8 lg:h-full flex justify-center items-center lg:static'>
+                                <p className='group-hover:text-white text-white lg:text-black'>
                                     #{anime.rank}
                                 </p>
                             </div>
@@ -84,16 +84,16 @@ export default function Home() {
                                 />
                             </div>
                             <div className='grid grid-cols-1 lg:grid-cols-4 items-center justify-center w-full'>
-                                <p className='lg:text-black text-white text-sm lg:p-0 lg:text-base p-2 text-center'>
+                                <p className='text-sm lg:p-0 lg:text-base p-2 text-center'>
                                     {anime.title}
                                 </p>
-                                <p className='text-black hidden lg:block text-center'>
+                                <p className='hidden lg:block text-center'>
                                     ⭐: {anime.score}
                                 </p>
-                                <p className='text-black hidden lg:block text-center'>
+                                <p className='hidden lg:block text-center'>
                                     📺: {anime.episodes}
                                 </p>
-                                <p className='text-black hidden lg:block text-center'>
+                                <p className='hidden lg:block text-center'>
                                     👥: {anime.scored_by}
                                 </p>
                             </div>

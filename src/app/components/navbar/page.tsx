@@ -24,7 +24,7 @@ export default function Navbar() {
 
     return (
         <>
-            <div className='w-full flex items-center justify-center bg-tertiary/70 p-3 fixed z-50 text-white'>
+            <div className='w-full flex items-center justify-center bg-primary/70 p-3 fixed z-50 text-white'>
                 <div className='container flex justify-between items-center'>
                     <Link href='/' className='font-semibold text-2xl'>
                         AmiaList
@@ -36,7 +36,7 @@ export default function Navbar() {
                                     href='/'
                                     className={`link ${
                                         pathname === '/' ? 'activeLink' : ''
-                                    } p-2 hover:bg-quaternary rounded-md`}
+                                    } p-2 rounded-md`}
                                 >
                                     Anime
                                 </Link>
@@ -48,7 +48,7 @@ export default function Navbar() {
                                         pathname === '/manga'
                                             ? 'activeLink'
                                             : ''
-                                    } p-2 hover:bg-quaternary rounded-md`}
+                                    } p-2 rounded-md`}
                                 >
                                     Manga
                                 </Link>
@@ -60,7 +60,7 @@ export default function Navbar() {
                                         pathname === '/topanime'
                                             ? 'activeLink'
                                             : ''
-                                    } p-2 hover:bg-quaternary rounded-md`}
+                                    } p-2 rounded-md`}
                                 >
                                     Top Anime
                                 </Link>
@@ -70,7 +70,7 @@ export default function Navbar() {
                                     href='#'
                                     className={`link ${
                                         pathname === '/#' ? 'activeLink' : ''
-                                    } p-2 hover:bg-quaternary rounded-md`}
+                                    } p-2 rounded-md`}
                                 >
                                     Seasons
                                 </Link>
@@ -120,7 +120,7 @@ export default function Navbar() {
             <div className='fixed bottom-3 right-3 lg:hidden z-50'>
                 <div
                     onClick={handleToggle}
-                    className='p-4 bg-tertiary rounded-full flex flex-col justify-center items-center relative'
+                    className='p-4 bg-slate-300 rounded-full flex flex-col justify-center items-center relative'
                 >
                     <p
                         className={`transition-all duration-300 transform ${
@@ -137,7 +137,7 @@ export default function Navbar() {
                         toggleHamburger
                             ? 'opacity-100 translate-y-0 pointer-events-auto'
                             : 'opacity-0 translate-y-10 pointer-events-none'
-                    } w-64 h-40 p-2 absolute -top-32 right-14 bg-quaternary flex flex-wrap gap-6 items-center justify-center rounded-md transition-all duration-300 ease-in-out transform`}
+                    } w-64 h-40 p-2 absolute -top-32 text-white right-14 bg-primary/80 flex flex-wrap gap-6 items-center justify-center rounded-md transition-all duration-300 ease-in-out transform`}
                 >
                     <Link href='/' className='text-center'>
                         <p>🎬</p>
@@ -159,11 +159,11 @@ export default function Navbar() {
                         <p>👤</p>
                         <p>account</p>
                     </Link> */}
-                    <Link href='/#' className='text-center'>
+                    <Link href='/login' className='text-center'>
                         <p>👤</p>
                         <p>Login</p>
                     </Link>
-                    <Link href='/#' className='text-center'>
+                    <Link href='/register' className='text-center'>
                         <p>👤</p>
                         <p>Register</p>
                     </Link>

@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body className={`${overpass.className} bg-primary`}>
+            <body className={`${overpass.className} bg-slate-200`}>
                 <Navbar />
                 <div className='w-full h-full flex justify-center pt-[72px]'>
                     {children}

@@ -60,10 +60,10 @@ export default function MangaPage() {
                     <Link
                         href={`/detailsmanga/${anime.mal_id}`}
                         key={anime.mal_id}
-                        className='relative lg:flex lg:m-3 lg:bg-secondary lg:p-4 rounded-lg lg:gap-4 hover:bg-quaternary cursor-pointer'
+                        className='relative lg:flex lg:m-3 lg:bg-white hover:text-white lg:p-4 rounded-lg lg:gap-4 hover:bg-primary cursor-pointer lg:hover:text-white group'
                     >
-                        <div className='absolute z-10 bg-tertiary lg:bg-transparent m-auto rounded-full w-16 h-8 lg:h-full flex justify-center items-center lg:static'>
-                            <p className='lg:text-black text-white'>
+                        <div className='absolute z-10 bg-primary lg:bg-transparent m-auto rounded-full w-16 h-8 lg:h-full flex justify-center items-center lg:static'>
+                            <p className='group-hover:text-white text-white lg:text-black'>
                                 #{anime.rank}
                             </p>
                         </div>
@@ -75,16 +75,16 @@ export default function MangaPage() {
                             />
                         </div>
                         <div className='grid grid-cols-1 lg:grid-cols-4 items-center justify-center w-full'>
-                            <p className='lg:text-black text-white text-sm lg:p-0 lg:text-base p-2 text-center'>
+                            <p className='text-sm lg:p-0 lg:text-base p-2 text-center'>
                                 {anime.title}
                             </p>
-                            <p className='text-black hidden lg:block text-center'>
+                            <p className='hidden lg:block text-center'>
                                 ⭐: {anime.score}
                             </p>
-                            <p className='text-black hidden lg:block text-center'>
-                                📺: {anime.chapters}
+                            <p className='hidden lg:block text-center'>
+                                📺: {anime.chapters ? anime.chapters : 'N/A'}
                             </p>
-                            <p className='text-black hidden lg:block text-center'>
+                            <p className='hidden lg:block text-center'>
                                 👥: {anime.scored_by}
                             </p>
                         </div>
@@ -93,13 +93,13 @@ export default function MangaPage() {
             </div>
             <div className='flex w-full gap-5 justify-center items-center'>
                 <button
-                    className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                    className='w-[120px] h-[50px] bg-primary rounded-lg hover:bg-primary/80 text-white'
                     onClick={handlePreviousPage}
                 >
                     Previous Page
                 </button>
                 <button
-                    className='w-[120px] h-[50px] bg-quaternary rounded-lg hover:bg-tertiary hover:text-white'
+                    className='w-[120px] h-[50px] bg-primary rounded-lg hover:bg-primary/80 text-white'
                     onClick={handleNextPage}
                 >
                     Next Page
