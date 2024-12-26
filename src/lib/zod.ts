@@ -13,3 +13,10 @@ export const RegisterSchema = object({
     message: 'password does not match',
     path: ['confirmPassword'],
 });
+
+export const SignInSchema = object({
+    email: string().email('Invalid Email'),
+    password: string()
+        .min(8, 'Password must be more than 8 Characters')
+        .max(32, 'Password must be less than 32 Characters'),
+});

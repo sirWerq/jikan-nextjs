@@ -3,10 +3,13 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 
 export default function Navbar() {
     const [toggleHamburger, setToggleHamburger] = useState(false);
     const [search, setSearch] = useState('');
+    const { data: session } = useSession();
 
     const pathname = usePathname();
     const router = useRouter();
@@ -105,13 +108,23 @@ export default function Navbar() {
                                 </button>
                             </form>
                             <div className='hidden md:flex gap-4'>
-                                {/* <img
-                                    src='/hero.jpg'
-                                    alt='user'
-                                    className='w-10 h-10 rounded-full'
-                                /> */}
-                                <Link href='/register'>Register</Link>
-                                <Link href='/login'>Login</Link>
+                                {session ? (
+                                    <>
+                                        <img
+                                            src='/hero.jpg'
+                                            alt='user'
+                                            className='w-10 h-10 rounded-full'
+                                        />
+                                        <button onClick={() => signOut()}>
+                                            Sign Out
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link href='/register'>Register</Link>
+                                        <Link href='/login'>Login</Link>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ import { Overpass } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/navbar/page';
 import Footer from './components/footer/page';
+import { SessionProvider } from 'next-auth/react';
 
 const overpass = Overpass({
     subsets: ['latin'],
@@ -16,23 +17,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
-    register,
-    login,
 }: Readonly<{
     children: React.ReactNode;
-    register: React.ReactNode;
-    login: React.ReactNode;
 }>) {
     return (
         <html lang='en'>
             <body className={`${overpass.className} bg-slate-200`}>
-                <Navbar />
-                <div className='w-full h-full flex justify-center pt-[72px]'>
-                    {children}
-                </div>
-                <Footer />
-                {register}
-                {login}
+                <SessionProvider>
+                    <Navbar />
+                    <div className='w-full h-full flex justify-center pt-[72px]'>
+                        {children}
+                    </div>
+                    <Footer />
+                </SessionProvider>
             </body>
         </html>
     );

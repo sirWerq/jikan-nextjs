@@ -1,81 +1,94 @@
 'use client';
-
+import Link from 'next/link';
+import { signInCredentials } from '@/lib/actions';
+import { useFormState, useFormStatus } from 'react-dom';
 import { useState } from 'react';
-import axios from 'axios';
 
 export default function LoginPage() {
-    const [data, setData] = useState({ email: '', password: '' });
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [state, formAction] = useFormState(signInCredentials, null);
+    const [lookPassword, setLookPassword] = useState(false);
+    const { pending } = useFormStatus();
 
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-        try {
-            setIsSubmitting(true);
-            const res = await axios.post(
-                'http://localhost:3000/api/login',
-                data,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-            return res;
-        } catch (err: any) {
-            console.error(err);
-            alert(err.response?.data?.message || 'Login failed.');
-        } finally {
-            setIsSubmitting(false);
-        }
+    const handleLookPassword = () => {
+        setLookPassword((prev) => !prev);
     };
 
     return (
-        <div className='container flex flex-col justify-center items-center h-screen'>
+        <div className='container flex flex-col h-screen justify-center items-center'>
+            <h1 className='font-semibold text-xl'>Login</h1>
             <form
+                action={formAction}
                 className='w-[100%] lg:w-[60%] flex flex-col items-center p-2 gap-4'
-                onSubmit={handleSubmit}
             >
-                <h1 className='font-semibold text-xl'>Login</h1>
+                {state?.message && (
+                    <div
+                        className='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 w-full'
+                        role='alert'
+                    >
+                        <span className='font-medium'>{state?.message}</span>
+                    </div>
+                )}
                 <div className='flex flex-col w-[70%]'>
                     <label htmlFor='email'>Email</label>
                     <input
                         type='email'
                         id='email'
                         name='email'
-                        placeholder='Email'
-                        className='p-1 rounded-lg focus:ring-tertiary focus:ring-1 focus:outline-none'
-                        onChange={(e) =>
-                            setData({ ...data, email: e.target.value })
-                        }
+                        placeholder='your email'
+                        className='p-1 rounded-lg ring-primary ring-2 focus:outline-none focus:ring-sky-500 w-[95%]'
                         autoComplete='off'
-                        required
                     />
+                    <div aria-live='polite' aria-atomic='true'>
+                        <span className='text-sm text-red-500 mt-2 ml-1'>
+                            {state?.error?.email}
+                        </span>
+                    </div>
                 </div>
                 <div className='flex flex-col w-[70%]'>
                     <label htmlFor='password'>Password</label>
-                    <input
-                        type='password'
-                        id='password'
-                        name='password'
-                        placeholder='Password'
-                        className='p-1 rounded-lg focus:ring-tertiary focus:ring-1 focus:outline-none'
-                        onChange={(e) =>
-                            setData({ ...data, password: e.target.value })
-                        }
-                        autoComplete='off'
-                        required
-                    />
+                    <div className='flex items-center'>
+                        <input
+                            type={lookPassword ? 'text' : 'password'}
+                            id='password'
+                            name='password'
+                            placeholder='******'
+                            className='p-1 rounded-lg ring-primary ring-2 focus:outline-none focus:ring-sky-500 w-[95%]'
+                            autoComplete='off'
+                        />
+                        <span
+                            className='ml-1 cursor-pointer'
+                            onClick={handleLookPassword}
+                        >
+                            {lookPassword ? '🕶️' : '👁️'}
+                        </span>
+                    </div>
+                    <div aria-live='polite' aria-atomic='true'>
+                        <span className='text-sm text-red-500 mt-2 ml-1'>
+                            {state?.error?.password}
+                        </span>
+                    </div>
                 </div>
                 <div>
                     <button
                         type='submit'
-                        className='bg-primary border p-3 rounded-md text-white'
-                        disabled={isSubmitting}
+                        disabled={pending}
+                        className='bg-tertiary border p-3 rounded-md text-white bg-primary active:bg-primary/70'
                     >
-                        {isSubmitting ? 'Login...' : 'Login'}
+                        {pending ? 'Authenticating...' : 'Login'}
                     </button>
                 </div>
             </form>
+            <div className='text-center'>
+                <p className='text-sm font-light text-gray-500'>
+                    Don&apos;t have an account yet?
+                </p>
+                <Link
+                    href='/register'
+                    className='font-medium pl-1 text-blue-600 hover:text-blue-700'
+                >
+                    Sign Up here
+                </Link>
+            </div>
         </div>
     );
 }
