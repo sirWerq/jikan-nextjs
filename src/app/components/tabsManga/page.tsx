@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-export default function TabsManga({ datas, characters }: any) {
+export default function TabsManga({ datas, characters }: TabsProps) {
     const [tabs, setTabs] = useState(1);
 
     const handleTabs = (index: number) => {
@@ -69,7 +69,7 @@ export default function TabsManga({ datas, characters }: any) {
                 <div className='p-2 bg-secondary rounded-sm shadow-md'>
                     <h2>Characters</h2>
                     <div className='grid lg:grid-cols-3 gap-5'>
-                        {characters.slice(0, 9).map((char: any) => {
+                        {characters.slice(0, 9).map((char: Character) => {
                             return (
                                 <div
                                     className='flex shadow-md p-2 gap-2'

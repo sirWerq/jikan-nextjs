@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { signOut } from 'next-auth/react';
+import { year, season } from '@/utils/getSeason';
+import Image from 'next/image';
 
 export default function Navbar() {
     const [toggleHamburger, setToggleHamburger] = useState(false);
@@ -18,7 +20,7 @@ export default function Navbar() {
         setToggleHamburger((toggleHamburger) => !toggleHamburger);
     };
 
-    const handleSearch = (e: any) => {
+    const handleSearch = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (search.trim()) {
             router.push(`/search?q=${search}`);
@@ -70,9 +72,11 @@ export default function Navbar() {
                             </li>
                             <li>
                                 <Link
-                                    href='#'
+                                    href={`/seasons/${year}/${season}`}
                                     className={`link ${
-                                        pathname === '/#' ? 'activeLink' : ''
+                                        pathname.startsWith('/seasons')
+                                            ? 'activeLink'
+                                            : ''
                                     } p-2 rounded-md`}
                                 >
                                     Seasons
@@ -110,11 +114,15 @@ export default function Navbar() {
                             <div className='hidden md:flex gap-4'>
                                 {session ? (
                                     <>
-                                        <img
-                                            src='/hero.jpg'
-                                            alt='user'
-                                            className='w-10 h-10 rounded-full'
-                                        />
+                                        <Link href='/profile'>
+                                            <Image
+                                                width={40}
+                                                height={40}
+                                                src='/hero.jpg'
+                                                alt='user'
+                                                className='rounded-full'
+                                            />
+                                        </Link>
                                         <button onClick={() => signOut()}>
                                             Sign Out
                                         </button>

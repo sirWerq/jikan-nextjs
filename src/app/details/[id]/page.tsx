@@ -81,7 +81,7 @@ export default function DetailsPage() {
                     </div>
                 </div>
             </div>
-            <div className='w-full grid lg:grid-cols-6 pl-4 py-2 gap-8'>
+            <div className='w-full grid lg:grid-cols-6 px-4 py-2 gap-8'>
                 <div className='lg:col-span-1 text-sm p-2 flex flex-col gap-2 bg-secondary rounded-lg shadow-md h-full lg:h-[1200px] bg-white'>
                     <div>
                         <p>Airing</p>

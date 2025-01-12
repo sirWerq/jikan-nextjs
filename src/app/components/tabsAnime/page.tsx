@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-export default function Tabs({ datas, characters, staffs }: any) {
+export default function Tabs({ datas, characters, staffs }: TabsProps) {
     const [tabs, setTabs] = useState(1);
 
     const handleTabs = (index: number) => {
@@ -55,7 +55,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 <div className='p-2 bg-secondary rounded-sm shadow-md'>
                     <h2>Relations</h2>
                     <div className='text-sm'>
-                        {datas.relations.map((relat: Relation, id: number) => (
+                        {datas.relations.map((relat, id) => (
                             <div
                                 key={id}
                                 className='border-b border-primary flex gap-2'
@@ -84,9 +84,9 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 <div className='p-2 bg-secondary rounded-sm shadow-md'>
                     <h2>Characters</h2>
                     <div className='grid lg:grid-cols-3 gap-5'>
-                        {characters.slice(0, 9).map((char: any) => {
+                        {characters.slice(0, 9).map((char) => {
                             const japaneseVoiceActor = char.voice_actors.find(
-                                (actor: any) => actor.language === 'Japanese'
+                                (actor) => actor.language === 'Japanese'
                             );
 
                             return (
@@ -147,7 +147,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
                 <div className='p-2 bg-secondary rounded-sm shadow-md'>
                     <h2>Staff</h2>
                     <div className='grid lg:grid-cols-3 gap-5'>
-                        {staffs.slice(0, 9).map((staff: any) => (
+                        {staffs.slice(0, 9).map((staff) => (
                             <div
                                 className='flex justify-between shadow-md p-2 gap-2'
                                 key={staff.person.mal_id}
@@ -232,7 +232,7 @@ export default function Tabs({ datas, characters, staffs }: any) {
             >
                 <h2>Staffs</h2>
                 <div className='grid lg:grid-cols-3 gap-5'>
-                    {staffs.map((staff: any) => (
+                    {staffs.map((staff) => (
                         <div
                             className='flex justify-between shadow-md p-2 gap-2'
                             key={staff.person.mal_id}

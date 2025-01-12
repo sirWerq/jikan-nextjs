@@ -11,7 +11,7 @@ export default function DetailsManga() {
     const params = useParams();
     const { id } = params;
 
-    const [manga, setManga] = useState<any>([]);
+    const [manga, setManga] = useState([]);
     const [characters, setCharacters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
